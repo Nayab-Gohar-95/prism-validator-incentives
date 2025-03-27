@@ -1,0 +1,17 @@
+// 1. The effective balance remains within the valid range (always holds globally).
+P>=1 [ G (effective_balance>=0&effective_balance<=MAX_BALANCE) ]
+
+// 2. The state variable transitions only within defined states (always holds globally).
+P>=1 [ G (state=0|state=1|state=2) ]
+
+// 1. The validator eventually receives rewards.
+P>=1 [ F (effective_balance>0) ]
+
+// 2. No infinite idle state: eventually transitions to attesting or proposing.
+P>=1 [ F (state=1|state=2) ]
+
+// 3. All states are reachable: both attesting (1) and proposing (2) should be reachable.
+P>=1 [ F (state=1) ]
+
+P>=1 [ F (state=2) ]
+
